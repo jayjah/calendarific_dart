@@ -1,3 +1,4 @@
+/// Exception class
 class CalendarificApiException implements Exception {
   final String message;
   final int? code;

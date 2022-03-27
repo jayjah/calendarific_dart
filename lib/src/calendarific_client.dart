@@ -1,6 +1,6 @@
 import 'package:chopper/chopper.dart';
 
-part 'calendarific_api.chopper.dart';
+part 'calendarific_client.chopper.dart';
 
 /// Calendarific Rest Client abstraction
 @ChopperApi(baseUrl: "https://calendarific.com/api/v2")

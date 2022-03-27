@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'calendarific_api.dart';
+part of 'calendarific_client.dart';
 
 // **************************************************************************
 // ChopperGenerator

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_dynamic_calls
+
 library calendarific_dart;
 
 class Holiday {
@@ -16,7 +18,7 @@ class Holiday {
     if (data is List) {
       return data.map<Holiday>((dynamic e) {
         final DateTime date = DateTime.parse(e['date']['iso'] as String);
-        final List<String> types = List<String>.from(e['type'] as List);
+        final List<String> types = List<String>.from(e['type'] as List<String>);
 
         return Holiday(
           date: date,

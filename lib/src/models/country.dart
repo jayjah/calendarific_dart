@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_dynamic_calls
+
 library calendarific_dart;
 
 class Country {
