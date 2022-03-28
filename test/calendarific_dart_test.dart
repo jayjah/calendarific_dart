@@ -13,7 +13,7 @@ void main() {
     setUp(() {
       assert(apiKey != null,
           'ApiKey `CALENDARIFIC_API_KEY` from environment not readable or not available!');
-      api = CalendarificApi((apiKey as List<String>)[0]);
+      api = CalendarificApi(apiKey as String);
     });
 
     test('getHolidays Test', () async {
