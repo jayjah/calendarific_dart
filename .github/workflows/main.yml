@@ -27,4 +27,6 @@ jobs:
       #  run: dart analyze --fatal-infos
 
       - name: Run test suite
-        run: dart test
+        env:
+          CALENDARIFIC_API_KEY: ${{ CALENDARIFIC_API_KEY }}
+        run: echo ${{ CALENDARIFIC_API_KEY }} && dart test
