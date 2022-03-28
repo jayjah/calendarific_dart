@@ -5,14 +5,12 @@ import 'package:test/test.dart';
 
 void main() {
   group('Calendarific API Test', () {
-    print('Environment: ${Platform.environment}');
     final dynamic apiKey = Platform.environment['CALENDARIFIC_API_KEY'];
-    print('API KEYS: $apiKey');
     late CalendarificApi api;
 
     setUp(() {
       assert(apiKey != null,
-          'ApiKey `CALENDARIFIC_API_KEY` from environment not readable or not available!');
+          'ApiKey `CALENDARIFIC_API_KEY` from environment NOT readable or NOT available!');
       api = CalendarificApi(apiKey as String);
     });
 
