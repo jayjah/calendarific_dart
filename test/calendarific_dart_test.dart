@@ -1,15 +1,17 @@
+import 'dart:io' show Platform;
+
 import 'package:calendarific_dart/calendarific_dart.dart';
 import 'package:test/test.dart';
 
 void main() {
   group('Calendarific API Test', () {
-    // TODO read apiKey from environment for github action testing
-    //https://api.dart.dev/stable/2.16.2/dart-io/Platform-class.html
-    const String apiKey = '';
+    final String? apiKey = Platform.environment['CALENDARIFIC_API_KEY'];
     late CalendarificApi api;
 
     setUp(() {
-      api = CalendarificApi(apiKey);
+      assert(apiKey != null,
+          'ApiKey `CALENDARIFIC_API_KEY` from environment not readable or not available!');
+      api = CalendarificApi(apiKey!);
     });
 
     test('getHolidays Test', () async {
