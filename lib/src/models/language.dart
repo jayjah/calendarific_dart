@@ -2,6 +2,7 @@
 
 library calendarific_dart;
 
+/// Basic language model class
 class Language {
   final String name;
   final String code;

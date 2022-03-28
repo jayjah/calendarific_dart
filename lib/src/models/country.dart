@@ -2,6 +2,7 @@
 
 library calendarific_dart;
 
+/// Basic country model class
 class Country {
   final String name;
   final String isoCode;

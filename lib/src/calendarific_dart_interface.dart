@@ -3,12 +3,14 @@ import 'package:calendarific_dart/src/models/models.dart';
 
 /// Basic interface class for calendarific api
 abstract class CalendarificDartApi {
-  Future<List<Holiday>?> getHolidays(
-      {required String countryCode, required String year});
+  Future<List<Holiday>?> getHolidays({
+    required String countryCode,
+    required String year,
+  });
   Future<List<Language>?> getLanguages();
   Future<List<Country>?> getCountries();
 
-  Exception? getExceptionFromResponse(int statusCode) {
+  Exception getExceptionFromResponse(int statusCode) {
     switch (statusCode) {
       case 401:
         return const CalendarificApiException(

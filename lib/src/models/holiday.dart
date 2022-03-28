@@ -2,6 +2,7 @@
 
 library calendarific_dart;
 
+/// Basic holiday model class
 class Holiday {
   final String name;
   final String description;
