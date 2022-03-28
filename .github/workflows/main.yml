@@ -28,5 +28,5 @@ jobs:
 
       - name: Run test suite
         env:
-          CALENDARIFIC_API_KEY: ${{ CALENDARIFIC_API_KEY }}
+          CALENDARIFIC_API_KEY: ${{ secrets.CALENDARIFIC_API_KEY }}
         run: echo ${{ CALENDARIFIC_API_KEY }} && dart test
