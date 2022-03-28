@@ -5,6 +5,7 @@ import 'package:test/test.dart';
 
 void main() {
   group('Calendarific API Test', () {
+    print('Environment: ${Platform.environment}');
     final String? apiKey = Platform.environment['CALENDARIFIC_API_KEY'];
     late CalendarificApi api;
 
