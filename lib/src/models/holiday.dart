@@ -18,7 +18,8 @@ class Holiday {
     if (data is List) {
       return data.map<Holiday>((dynamic e) {
         final DateTime date = DateTime.parse(e['date']['iso'] as String);
-        final List<String> types = List<String>.from(e['type'] as List<String>);
+        final List<String> types =
+            List<String>.from(e['type'] as List<dynamic>);
 
         return Holiday(
           date: date,
