@@ -33,4 +33,23 @@ class Holiday {
 
     return null;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Holiday &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          description == other.description &&
+          types == other.types &&
+          date == other.date;
+
+  @override
+  int get hashCode =>
+      name.hashCode ^ description.hashCode ^ types.hashCode ^ date.hashCode;
+
+  @override
+  String toString() {
+    return 'Holiday{name: $name, description: $description, types: $types, date: $date}';
+  }
 }

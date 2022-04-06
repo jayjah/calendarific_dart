@@ -32,4 +32,28 @@ class Country {
 
     return null;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Country &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          isoCode == other.isoCode &&
+          totalHolidays == other.totalHolidays &&
+          supportedLanguages == other.supportedLanguages &&
+          uuid == other.uuid;
+
+  @override
+  int get hashCode =>
+      name.hashCode ^
+      isoCode.hashCode ^
+      totalHolidays.hashCode ^
+      supportedLanguages.hashCode ^
+      uuid.hashCode;
+
+  @override
+  String toString() {
+    return 'Country{name: $name, isoCode: $isoCode, totalHolidays: $totalHolidays, supportedLanguages: $supportedLanguages, uuid: $uuid}';
+  }
 }

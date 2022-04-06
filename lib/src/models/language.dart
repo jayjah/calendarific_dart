@@ -26,4 +26,21 @@ class Language {
 
     return null;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Language &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          code == other.code &&
+          nativeName == other.nativeName;
+
+  @override
+  int get hashCode => name.hashCode ^ code.hashCode ^ nativeName.hashCode;
+
+  @override
+  String toString() {
+    return 'Language{name: $name, code: $code, nativeName: $nativeName}';
+  }
 }
