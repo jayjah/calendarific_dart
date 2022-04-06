@@ -2,7 +2,7 @@
 
 import 'dart:convert';
 
-import 'package:calendarific_dart/src/calendarific_client.dart';
+import 'package:calendarific_dart/src/client/client.dart';
 import 'package:calendarific_dart/src/calendarific_dart_interface.dart';
 import 'package:calendarific_dart/src/models/models.dart';
 
@@ -32,7 +32,7 @@ class CalendarificApi extends CalendarificDartApi {
 
     return Holiday.listFromJsonData(
       jsonDecode(
-        response.body.toString(),
+        response.bodyString,
       ),
     );
   }
@@ -51,7 +51,7 @@ class CalendarificApi extends CalendarificDartApi {
 
     return Language.listFromJsonData(
       jsonDecode(
-        response.body.toString(),
+        response.bodyString,
       ),
     );
   }
@@ -70,7 +70,7 @@ class CalendarificApi extends CalendarificDartApi {
 
     return Country.listFromJsonData(
       jsonDecode(
-        response.body.toString(),
+        response.bodyString,
       ),
     );
   }
