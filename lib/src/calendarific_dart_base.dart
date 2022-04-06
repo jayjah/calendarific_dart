@@ -2,18 +2,17 @@
 
 import 'dart:convert';
 
-import 'package:calendarific_dart/src/client/client.dart';
 import 'package:calendarific_dart/src/calendarific_dart_interface.dart';
+import 'package:calendarific_dart/src/client/client.dart';
 import 'package:calendarific_dart/src/models/models.dart';
-
 import 'package:chopper/chopper.dart';
 
 /// Basic implementation class for calendarific api of [CalendarificDartApi]
 class CalendarificApi extends CalendarificDartApi {
   final String _apiKey;
-  final CalendarificClient client;
+  final CalendarificClient _client;
   CalendarificApi(this._apiKey)
-      : client = CalendarificClient.create(ChopperClient());
+      : _client = CalendarificClient.create(ChopperClient());
 
   /// Retrieve holidays by given [countryCode] and [year]. Those values
   ///   must be provided.
@@ -25,7 +24,7 @@ class CalendarificApi extends CalendarificDartApi {
   Future<List<Holiday>?> getHolidays(
       {required String countryCode, required String year}) async {
     final Response<dynamic> response =
-        await client.getHolidays(_apiKey, countryCode, year);
+        await _client.getHolidays(_apiKey, countryCode, year);
     if (response.statusCode != 200) {
       throw getExceptionFromResponse(response.statusCode);
     }
@@ -44,7 +43,7 @@ class CalendarificApi extends CalendarificDartApi {
   /// It may return [Null] on unexpected parse error.
   @override
   Future<List<Language>?> getLanguages() async {
-    final Response<dynamic> response = await client.getLanguages(_apiKey);
+    final Response<dynamic> response = await _client.getLanguages(_apiKey);
     if (response.statusCode != 200) {
       throw getExceptionFromResponse(response.statusCode);
     }
@@ -63,7 +62,7 @@ class CalendarificApi extends CalendarificDartApi {
   /// It may return [Null] on unexpected parse error.
   @override
   Future<List<Country>?> getCountries() async {
-    final Response<dynamic> response = await client.getCountries(_apiKey);
+    final Response<dynamic> response = await _client.getCountries(_apiKey);
     if (response.statusCode != 200) {
       throw getExceptionFromResponse(response.statusCode);
     }
