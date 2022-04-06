@@ -29,4 +29,4 @@ jobs:
       - name: Run test suite
         env:
           CALENDARIFIC_API_KEY: ${{ secrets.CALENDARIFIC_API_KEY }}
-        run: dart test
+        run: dart run test --chain-stack-traces
