@@ -12,6 +12,7 @@ and the Flutter guide for
 -->
 
 ![Dart](https://img.shields.io/badge/Dart-2.16.1-green)
+[![pub](https://img.shields.io/pub/v/calendarific_dart.svg)](https://pub.dev/packages/calendarific_dart)
 
 A dart package to retrieve holiday information from calendarific API.
 
