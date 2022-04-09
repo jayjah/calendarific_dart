@@ -9,10 +9,9 @@ void main() {
     late CalendarificApi api;
 
     setUp(() {
-      //  assert(apiKey != null,
-      //      'ApiKey `CALENDARIFIC_API_KEY` from environment NOT readable or NOT available!');
-      api = CalendarificApi(
-          /*apiKey as String*/ '59990c617d5a55672d7ddaaa817dd3bbd4553f31');
+      assert(apiKey != null,
+          'ApiKey `CALENDARIFIC_API_KEY` from environment NOT readable or NOT available!');
+      api = CalendarificApi(apiKey as String);
     });
 
     test('getHolidays Test', () async {
