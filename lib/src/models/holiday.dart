@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_dynamic_calls
 
-library calendarific_dart;
+part of 'models.dart';
 
 /// Basic holiday model class
 class Holiday {

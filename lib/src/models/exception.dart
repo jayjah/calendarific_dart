@@ -1,3 +1,5 @@
+part of 'models.dart';
+
 /// Exception class
 class CalendarificApiException implements Exception {
   final String message;

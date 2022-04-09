@@ -1,4 +1,3 @@
-import 'package:calendarific_dart/src/exception.dart';
 import 'package:calendarific_dart/src/models/models.dart';
 
 /// Basic interface class for calendarific api
