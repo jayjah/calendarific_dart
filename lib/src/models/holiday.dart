@@ -14,7 +14,7 @@ class Holiday {
     required this.types,
     required this.date,
   });
-  static List<Holiday>? listFromJsonData(dynamic json) {
+  static Iterable<Holiday>? listFromJsonData(dynamic json) {
     final dynamic data = json['response']?['holidays'];
     if (data is List) {
       return data.map<Holiday>((dynamic e) {
@@ -28,7 +28,7 @@ class Holiday {
           description: e['description'] as String,
           name: e['name'] as String,
         );
-      }).toList(growable: false);
+      });
     }
 
     return null;

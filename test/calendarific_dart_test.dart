@@ -15,14 +15,14 @@ void main() {
     });
 
     test('getHolidays Test', () async {
-      final List<Holiday>? data =
+      final Iterable<Holiday>? data =
           await api.getHolidays(countryCode: 'DE', year: '2022');
       expect(data, isNotNull);
       expect(data, isNotEmpty);
     });
 
     test('getSpecificHolidays Test', () async {
-      final List<Holiday>? data = await api.getHolidays(
+      final Iterable<Holiday>? data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
         month: 12,
@@ -33,7 +33,7 @@ void main() {
     });
 
     test('getHolidaysFromMonth Test', () async {
-      final List<Holiday>? data = await api.getHolidaysFromMonth(
+      final Iterable<Holiday>? data = await api.getHolidaysFromMonth(
         countryCode: 'DE',
         year: '2022',
         month: 12,
@@ -43,13 +43,13 @@ void main() {
     });
 
     test('getLanguages Test', () async {
-      final List<Language>? data = await api.getLanguages();
+      final Iterable<Language>? data = await api.getLanguages();
       expect(data, isNotNull);
       expect(data, isNotEmpty);
     });
 
     test('getCountries Test', () async {
-      final List<Country>? data = await api.getCountries();
+      final Iterable<Country>? data = await api.getCountries();
       expect(data, isNotNull);
       expect(data, isNotEmpty);
     });

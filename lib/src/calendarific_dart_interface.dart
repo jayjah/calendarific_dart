@@ -2,19 +2,19 @@ import 'package:calendarific_dart/src/models/models.dart';
 
 /// Basic interface class for calendarific api
 abstract class CalendarificDartApi {
-  Future<List<Holiday>?> getHolidays({
+  Future<Iterable<Holiday>?> getHolidays({
     required String countryCode,
     required String year,
     int? day,
     int? month,
   });
-  Future<List<Holiday>?> getHolidaysFromMonth({
+  Future<Iterable<Holiday>?> getHolidaysFromMonth({
     required String countryCode,
     required String year,
     required int month,
   });
-  Future<List<Language>?> getLanguages();
-  Future<List<Country>?> getCountries();
+  Future<Iterable<Language>?> getLanguages();
+  Future<Iterable<Country>?> getCountries();
 
   Exception getExceptionFromResponse(int statusCode) {
     switch (statusCode) {

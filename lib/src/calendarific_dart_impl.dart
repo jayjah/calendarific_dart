@@ -25,7 +25,7 @@ class CalendarificApi extends CalendarificDartApi {
   ///
   /// It may return [Null] on unexpected parse error.
   @override
-  Future<List<Holiday>?> getHolidays({
+  Future<Iterable<Holiday>?> getHolidays({
     required String countryCode,
     required String year,
     int? day,
@@ -72,7 +72,7 @@ class CalendarificApi extends CalendarificDartApi {
   ///
   /// It may return [Null] on unexpected parse error.
   @override
-  Future<List<Holiday>?> getHolidaysFromMonth({
+  Future<Iterable<Holiday>?> getHolidaysFromMonth({
     required String countryCode,
     required String year,
     required int month,
@@ -102,7 +102,7 @@ class CalendarificApi extends CalendarificDartApi {
   ///
   /// It may return [Null] on unexpected parse error.
   @override
-  Future<List<Language>?> getLanguages() async {
+  Future<Iterable<Language>?> getLanguages() async {
     final Response<dynamic> response = await _client.getLanguages(_apiKey);
     if (response.statusCode != 200) {
       throw getExceptionFromResponse(response.statusCode);
@@ -121,7 +121,7 @@ class CalendarificApi extends CalendarificDartApi {
   ///
   /// It may return [Null] on unexpected parse error.
   @override
-  Future<List<Country>?> getCountries() async {
+  Future<Iterable<Country>?> getCountries() async {
     final Response<dynamic> response = await _client.getCountries(_apiKey);
     if (response.statusCode != 200) {
       throw getExceptionFromResponse(response.statusCode);
