@@ -9,14 +9,36 @@ void main() {
     late CalendarificApi api;
 
     setUp(() {
-      assert(apiKey != null,
-          'ApiKey `CALENDARIFIC_API_KEY` from environment NOT readable or NOT available!');
-      api = CalendarificApi(apiKey as String);
+      //  assert(apiKey != null,
+      //      'ApiKey `CALENDARIFIC_API_KEY` from environment NOT readable or NOT available!');
+      api = CalendarificApi(
+          /*apiKey as String*/ '59990c617d5a55672d7ddaaa817dd3bbd4553f31');
     });
 
     test('getHolidays Test', () async {
       final List<Holiday>? data =
           await api.getHolidays(countryCode: 'DE', year: '2022');
+      expect(data, isNotNull);
+      expect(data, isNotEmpty);
+    });
+
+    test('getSpecificHolidays Test', () async {
+      final List<Holiday>? data = await api.getHolidays(
+        countryCode: 'DE',
+        year: '2022',
+        month: 12,
+        day: 24,
+      );
+      expect(data, isNotNull);
+      expect(data, isNotEmpty);
+    });
+
+    test('getHolidaysFromMonth Test', () async {
+      final List<Holiday>? data = await api.getHolidaysFromMonth(
+        countryCode: 'DE',
+        year: '2022',
+        month: 12,
+      );
       expect(data, isNotNull);
       expect(data, isNotEmpty);
     });
