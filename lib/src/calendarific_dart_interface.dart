@@ -1,4 +1,12 @@
+import 'dart:convert' show jsonDecode;
+
 import 'package:calendarific_dart/src/models/models.dart';
+import 'package:chopper/chopper.dart' show Response;
+
+/// Basic extension on String to reduce code duplication
+extension JsonDecoder on String {
+  dynamic get asDecodedJson => jsonDecode(this);
+}
 
 /// Basic interface class for calendarific api
 abstract class CalendarificDartApi {
@@ -16,8 +24,8 @@ abstract class CalendarificDartApi {
   Future<Iterable<Language>?> getLanguages();
   Future<Iterable<Country>?> getCountries();
 
-  Exception getExceptionFromResponse(int statusCode) {
-    switch (statusCode) {
+  Exception getExceptionFromResponse(Response<dynamic> response) {
+    switch (response.statusCode) {
       case 401:
         return const CalendarificApiException(
           'Unauthorized Missing or incorrect API token in header',
@@ -64,7 +72,11 @@ abstract class CalendarificDartApi {
           603,
         );
       default:
-        return CalendarificApiException('API Unknown error', statusCode);
+        return CalendarificApiException(
+          'API Unknown error',
+          response.statusCode,
+          response,
+        );
     }
   }
 }

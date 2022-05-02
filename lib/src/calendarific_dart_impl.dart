@@ -1,7 +1,5 @@
 // ignore_for_file: comment_references
 
-import 'dart:convert';
-
 import 'package:calendarific_dart/src/calendarific_dart_interface.dart';
 import 'package:calendarific_dart/src/client/client.dart';
 import 'package:calendarific_dart/src/models/models.dart';
@@ -12,7 +10,8 @@ class CalendarificApi extends CalendarificDartApi {
   final String _apiKey;
   final CalendarificClient _client;
   CalendarificApi(this._apiKey)
-      : _client = CalendarificClient.create(ChopperClient());
+      : assert(_apiKey.isNotEmpty, 'API Key can not be empty!'),
+        _client = CalendarificClient.create(ChopperClient());
 
   /// Retrieve holidays by given [countryCode] and [year]. Those values
   ///   must be provided.
@@ -31,6 +30,9 @@ class CalendarificApi extends CalendarificDartApi {
     int? day,
     int? month,
   }) async {
+    assert(countryCode.isNotEmpty, 'Provided countryCode can not be empty!');
+    assert(year.isNotEmpty, 'Provided year can not be empty!');
+
     late final Response<dynamic> response;
 
     if (day != null && month != null) {
@@ -54,14 +56,10 @@ class CalendarificApi extends CalendarificDartApi {
     }
 
     if (response.statusCode != 200) {
-      throw getExceptionFromResponse(response.statusCode);
+      throw getExceptionFromResponse(response);
     }
 
-    return Holiday.listFromJsonData(
-      jsonDecode(
-        response.bodyString,
-      ),
-    );
+    return Holiday.listFromJsonData(response.bodyString.asDecodedJson);
   }
 
   /// Retrieve holidays by given [countryCode], [year] and [month]. Those values
@@ -77,6 +75,8 @@ class CalendarificApi extends CalendarificDartApi {
     required String year,
     required int month,
   }) async {
+    assert(countryCode.isNotEmpty, 'Provided countryCode can not be empty!');
+    assert(year.isNotEmpty, 'Provided year can not be empty!');
     assert(
       month >= 1 && month <= 12,
       'Month must be between 1 and 12!',
@@ -86,14 +86,10 @@ class CalendarificApi extends CalendarificDartApi {
         await _client.getHolidaysFromMonth(_apiKey, countryCode, year, month);
 
     if (response.statusCode != 200) {
-      throw getExceptionFromResponse(response.statusCode);
+      throw getExceptionFromResponse(response);
     }
 
-    return Holiday.listFromJsonData(
-      jsonDecode(
-        response.bodyString,
-      ),
-    );
+    return Holiday.listFromJsonData(response.bodyString.asDecodedJson);
   }
 
   /// Retrieve all languages which are supported by Calendarific.
@@ -105,14 +101,10 @@ class CalendarificApi extends CalendarificDartApi {
   Future<Iterable<Language>?> getLanguages() async {
     final Response<dynamic> response = await _client.getLanguages(_apiKey);
     if (response.statusCode != 200) {
-      throw getExceptionFromResponse(response.statusCode);
+      throw getExceptionFromResponse(response);
     }
 
-    return Language.listFromJsonData(
-      jsonDecode(
-        response.bodyString,
-      ),
-    );
+    return Language.listFromJsonData(response.bodyString.asDecodedJson);
   }
 
   /// Retrieve all countries which are supported by Calendarific.
@@ -124,13 +116,9 @@ class CalendarificApi extends CalendarificDartApi {
   Future<Iterable<Country>?> getCountries() async {
     final Response<dynamic> response = await _client.getCountries(_apiKey);
     if (response.statusCode != 200) {
-      throw getExceptionFromResponse(response.statusCode);
+      throw getExceptionFromResponse(response);
     }
 
-    return Country.listFromJsonData(
-      jsonDecode(
-        response.bodyString,
-      ),
-    );
+    return Country.listFromJsonData(response.bodyString.asDecodedJson);
   }
 }
