@@ -20,6 +20,18 @@ abstract class CalendarificClient extends ChopperService {
 
   @Get(
     path:
+        "/holidays?api_key={api_key}&country={country}&year={year}&location={location}",
+    headers: <String, String>{"Content-Type": "application/json"},
+  )
+  Future<Response<dynamic>> getHolidaysByLocation(
+    @Path('api_key') String apiKey,
+    @Path('country') String countryCode,
+    @Path('year') String year,
+    @Path('location') String location,
+  );
+
+  @Get(
+    path:
         "/holidays?api_key={api_key}&country={country}&year={year}&day={day},month={month}",
     headers: <String, String>{"Content-Type": "application/json"},
   )
@@ -33,6 +45,20 @@ abstract class CalendarificClient extends ChopperService {
 
   @Get(
     path:
+        "/holidays?api_key={api_key}&country={country}&year={year}&day={day},month={month},location={location}",
+    headers: <String, String>{"Content-Type": "application/json"},
+  )
+  Future<Response<dynamic>> getSpecificHolidaysByLocation(
+    @Path('api_key') String apiKey,
+    @Path('country') String countryCode,
+    @Path('year') String year,
+    @Path('day') int day,
+    @Path('month') int month,
+    @Path('location') String location,
+  );
+
+  @Get(
+    path:
         "/holidays?api_key={api_key}&country={country}&year={year}&month={month}",
     headers: <String, String>{"Content-Type": "application/json"},
   )
@@ -41,6 +67,19 @@ abstract class CalendarificClient extends ChopperService {
     @Path('country') String countryCode,
     @Path('year') String year,
     @Path('month') int month,
+  );
+
+  @Get(
+    path:
+        "/holidays?api_key={api_key}&country={country}&year={year}&month={month},location={location}",
+    headers: <String, String>{"Content-Type": "application/json"},
+  )
+  Future<Response<dynamic>> getHolidaysFromMonthByLocation(
+    @Path('api_key') String apiKey,
+    @Path('country') String countryCode,
+    @Path('year') String year,
+    @Path('month') int month,
+    @Path('location') String location,
   );
 
   @Get(

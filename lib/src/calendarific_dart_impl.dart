@@ -1,4 +1,4 @@
-// ignore_for_file: comment_references
+// ignore_for_file: comment_references, curly_braces_in_flow_control_structures
 
 import 'package:calendarific_dart/src/calendarific_dart_interface.dart';
 import 'package:calendarific_dart/src/client/client.dart';
@@ -19,6 +19,7 @@ class CalendarificApi extends CalendarificDartApi {
   ///   both values must be provided!
   ///   [day] must be between 1 and 31.
   ///   [month] must be between 1 and 12.
+  ///   [location] must be ISO 3166-2 format
   ///
   /// It may throw a [CalendarificApiException] error on API error.
   ///
@@ -29,6 +30,7 @@ class CalendarificApi extends CalendarificDartApi {
     required String year,
     int? day,
     int? month,
+    String? location,
   }) async {
     assert(countryCode.isNotEmpty, 'Provided countryCode can not be empty!');
     assert(year.isNotEmpty, 'Provided year can not be empty!');
@@ -40,19 +42,47 @@ class CalendarificApi extends CalendarificDartApi {
         day >= 1 && day <= 31 && month >= 1 && month <= 12,
         'Day must be between 1 and 31. Month must be between 1 and 12!',
       );
-      response = await _client.getSpecificHolidays(
-        _apiKey,
-        countryCode,
-        year,
-        day,
-        month,
-      );
+      if (location != null) {
+        assert(location.isNotEmpty,
+            'Provided location value was provided, but is empty!');
+        assert(location.contains('-'),
+            'Provided location value is not a valid 3166-2 format!');
+
+        response = await _client.getSpecificHolidaysByLocation(
+          _apiKey,
+          countryCode,
+          year,
+          day,
+          month,
+          location,
+        );
+      } else
+        response = await _client.getSpecificHolidays(
+          _apiKey,
+          countryCode,
+          year,
+          day,
+          month,
+        );
     } else {
-      response = await _client.getHolidays(
-        _apiKey,
-        countryCode,
-        year,
-      );
+      if (location != null) {
+        assert(location.isNotEmpty,
+            'Provided location value was provided, but is empty!');
+        assert(location.contains('-'),
+            'Provided location value is not a valid 3166-2 format!');
+
+        response = await _client.getHolidaysByLocation(
+          _apiKey,
+          countryCode,
+          year,
+          location,
+        );
+      } else
+        response = await _client.getHolidays(
+          _apiKey,
+          countryCode,
+          year,
+        );
     }
 
     if (response.statusCode != 200) {
@@ -65,6 +95,7 @@ class CalendarificApi extends CalendarificDartApi {
   /// Retrieve holidays by given [countryCode], [year] and [month]. Those values
   ///   must be provided.
   ///   [month] must be between 1 and 12.
+  ///   [location] must be ISO 3166-2 format
   ///
   /// It may throw a [CalendarificApiException] error on API error.
   ///
@@ -74,6 +105,7 @@ class CalendarificApi extends CalendarificDartApi {
     required String countryCode,
     required String year,
     required int month,
+    String? location,
   }) async {
     assert(countryCode.isNotEmpty, 'Provided countryCode can not be empty!');
     assert(year.isNotEmpty, 'Provided year can not be empty!');
@@ -82,8 +114,27 @@ class CalendarificApi extends CalendarificDartApi {
       'Month must be between 1 and 12!',
     );
 
-    final Response<dynamic> response =
-        await _client.getHolidaysFromMonth(_apiKey, countryCode, year, month);
+    late final Response<dynamic> response;
+    if (location != null) {
+      assert(location.isNotEmpty,
+          'Provided location value was provided, but is empty!');
+      assert(location.contains('-'),
+          'Provided location value is not a valid 3166-2 format!');
+
+      response = await _client.getHolidaysFromMonthByLocation(
+        _apiKey,
+        countryCode,
+        year,
+        month,
+        location,
+      );
+    } else
+      response = await _client.getHolidaysFromMonth(
+        _apiKey,
+        countryCode,
+        year,
+        month,
+      );
 
     if (response.statusCode != 200) {
       throw getExceptionFromResponse(response);

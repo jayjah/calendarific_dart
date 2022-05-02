@@ -15,11 +15,13 @@ abstract class CalendarificDartApi {
     required String year,
     int? day,
     int? month,
+    String? location,
   });
   Future<Iterable<Holiday>?> getHolidaysFromMonth({
     required String countryCode,
     required String year,
     required int month,
+    String? location,
   });
   Future<Iterable<Language>?> getLanguages();
   Future<Iterable<Country>?> getCountries();
