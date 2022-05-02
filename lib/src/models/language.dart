@@ -12,15 +12,15 @@ class Language {
     required this.code,
     required this.nativeName,
   });
+  factory Language.fromJson(dynamic json) => Language(
+        nativeName: json['nativeName'] as String,
+        code: json['code'] as String,
+        name: json['name'] as String,
+      );
+
   static Iterable<Language>? listFromJsonData(dynamic json) {
     final dynamic data = json['response']?['languages'];
-    if (data is List) {
-      return data.map<Language>((dynamic e) => Language(
-            nativeName: e['nativeName'] as String,
-            code: e['code'] as String,
-            name: e['name'] as String,
-          ));
-    }
+    if (data is List) return data.map<Language>(Language.fromJson);
 
     return null;
   }
@@ -38,7 +38,6 @@ class Language {
   int get hashCode => name.hashCode ^ code.hashCode ^ nativeName.hashCode;
 
   @override
-  String toString() {
-    return 'Language{name: $name, code: $code, nativeName: $nativeName}';
-  }
+  String toString() =>
+      'Language{name: $name, code: $code, nativeName: $nativeName}';
 }
