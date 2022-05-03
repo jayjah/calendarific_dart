@@ -27,9 +27,9 @@ class Holiday {
   }
 
   static Iterable<Holiday>? listFromJsonData(dynamic json) {
-    print('Holiday response: $json');
     final dynamic data = json['response']?['holidays'];
     if (data is List)
+      // ignore: curly_braces_in_flow_control_structures
       return data.isEmpty
           ? const <Holiday>[]
           : data.map<Holiday>(Holiday.fromJson);

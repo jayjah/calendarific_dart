@@ -20,6 +20,18 @@ abstract class CalendarificClient extends ChopperService {
 
   @Get(
     path:
+        "/holidays?api_key={api_key}&country={country}&year={year}&type={type}",
+    headers: <String, String>{"Content-Type": "application/json"},
+  )
+  Future<Response<dynamic>> getHolidaysByType(
+    @Path('api_key') String apiKey,
+    @Path('country') String countryCode,
+    @Path('year') String year,
+    @Path('type') String type,
+  );
+
+  @Get(
+    path:
         "/holidays?api_key={api_key}&country={country}&year={year}&location={location}",
     headers: <String, String>{"Content-Type": "application/json"},
   )
@@ -28,6 +40,19 @@ abstract class CalendarificClient extends ChopperService {
     @Path('country') String countryCode,
     @Path('year') String year,
     @Path('location') String location,
+  );
+
+  @Get(
+    path:
+        "/holidays?api_key={api_key}&country={country}&year={year}&location={location},type{type}",
+    headers: <String, String>{"Content-Type": "application/json"},
+  )
+  Future<Response<dynamic>> getHolidaysByLocationAndType(
+    @Path('api_key') String apiKey,
+    @Path('country') String countryCode,
+    @Path('year') String year,
+    @Path('location') String location,
+    @Path('type') String type,
   );
 
   @Get(
@@ -41,6 +66,20 @@ abstract class CalendarificClient extends ChopperService {
     @Path('year') String year,
     @Path('day') int day,
     @Path('month') int month,
+  );
+
+  @Get(
+    path:
+        "/holidays?api_key={api_key}&country={country}&year={year}&day={day},month={month},type={type}",
+    headers: <String, String>{"Content-Type": "application/json"},
+  )
+  Future<Response<dynamic>> getSpecificHolidaysByType(
+    @Path('api_key') String apiKey,
+    @Path('country') String countryCode,
+    @Path('year') String year,
+    @Path('day') int day,
+    @Path('month') int month,
+    @Path('type') String type,
   );
 
   @Get(
@@ -59,6 +98,21 @@ abstract class CalendarificClient extends ChopperService {
 
   @Get(
     path:
+        "/holidays?api_key={api_key}&country={country}&year={year}&day={day},month={month},location={location},type={type}",
+    headers: <String, String>{"Content-Type": "application/json"},
+  )
+  Future<Response<dynamic>> getSpecificHolidaysByLocationAndType(
+    @Path('api_key') String apiKey,
+    @Path('country') String countryCode,
+    @Path('year') String year,
+    @Path('day') int day,
+    @Path('month') int month,
+    @Path('location') String location,
+    @Path('type') String type,
+  );
+
+  @Get(
+    path:
         "/holidays?api_key={api_key}&country={country}&year={year}&month={month}",
     headers: <String, String>{"Content-Type": "application/json"},
   )
@@ -67,6 +121,19 @@ abstract class CalendarificClient extends ChopperService {
     @Path('country') String countryCode,
     @Path('year') String year,
     @Path('month') int month,
+  );
+
+  @Get(
+    path:
+        "/holidays?api_key={api_key}&country={country}&year={year}&month={month},type{type}",
+    headers: <String, String>{"Content-Type": "application/json"},
+  )
+  Future<Response<dynamic>> getHolidaysFromMonthByType(
+    @Path('api_key') String apiKey,
+    @Path('country') String countryCode,
+    @Path('year') String year,
+    @Path('month') int month,
+    @Path('type') String type,
   );
 
   @Get(
@@ -80,6 +147,20 @@ abstract class CalendarificClient extends ChopperService {
     @Path('year') String year,
     @Path('month') int month,
     @Path('location') String location,
+  );
+
+  @Get(
+    path:
+        "/holidays?api_key={api_key}&country={country}&year={year}&month={month},location={location},type{type}",
+    headers: <String, String>{"Content-Type": "application/json"},
+  )
+  Future<Response<dynamic>> getHolidaysFromMonthByLocationAndType(
+    @Path('api_key') String apiKey,
+    @Path('country') String countryCode,
+    @Path('year') String year,
+    @Path('month') int month,
+    @Path('location') String location,
+    @Path('type') String type,
   );
 
   @Get(

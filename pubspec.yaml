@@ -3,7 +3,7 @@ description: |
   A dart package to retrieve data from calendarific API.
   Get holidays from specific country, year and moreover retrieve languages and countries 
   from their API.
-version: 1.0.2
+version: 1.1.0
 repository: https://github.com/jayjah/calendarific_dart
 homepage: https://markus.jayjah.de
 issue_tracker: https://github.com/jayjah/calendarific_dart/issues

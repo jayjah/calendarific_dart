@@ -1,7 +1,4 @@
-import 'dart:convert' show jsonDecode;
-
-import 'package:calendarific_dart/src/models/models.dart';
-import 'package:chopper/chopper.dart' show Response;
+part of 'api.dart';
 
 /// Basic extension on String to reduce code duplication
 extension JsonDecoder on String {
@@ -13,15 +10,7 @@ abstract class CalendarificDartApi {
   Future<Iterable<Holiday>?> getHolidays({
     required String countryCode,
     required String year,
-    int? day,
-    int? month,
-    String? location,
-  });
-  Future<Iterable<Holiday>?> getHolidaysFromMonth({
-    required String countryCode,
-    required String year,
-    required int month,
-    String? location,
+    required RequestOption option,
   });
   Future<Iterable<Language>?> getLanguages();
   Future<Iterable<Country>?> getCountries();
