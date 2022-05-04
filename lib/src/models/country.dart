@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_dynamic_calls
 
-library calendarific_dart;
+part of 'models.dart';
 
 /// Basic country model class
 class Country {
@@ -16,19 +16,17 @@ class Country {
     required this.supportedLanguages,
     required this.uuid,
   });
-  static List<Country>? listFromJsonData(dynamic json) {
+  factory Country.fromJson(dynamic json) => Country(
+        supportedLanguages: json['supported_languages'] as int,
+        totalHolidays: json['total_holidays'] as int,
+        isoCode: json['iso-3166'] as String,
+        name: json['country_name'] as String,
+        uuid: json['uuid'] as String,
+      );
+
+  static Iterable<Country>? listFromJsonData(dynamic json) {
     final dynamic data = json['response']?['countries'];
-    if (data is List) {
-      return data
-          .map<Country>((dynamic e) => Country(
-                supportedLanguages: e['supported_languages'] as int,
-                totalHolidays: e['total_holidays'] as int,
-                isoCode: e['iso-3166'] as String,
-                name: e['country_name'] as String,
-                uuid: e['uuid'] as String,
-              ))
-          .toList(growable: false);
-    }
+    if (data is List) return data.map<Country>(Country.fromJson);
 
     return null;
   }
@@ -53,7 +51,6 @@ class Country {
       uuid.hashCode;
 
   @override
-  String toString() {
-    return 'Country{name: $name, isoCode: $isoCode, totalHolidays: $totalHolidays, supportedLanguages: $supportedLanguages, uuid: $uuid}';
-  }
+  String toString() =>
+      'Country{name: $name, isoCode: $isoCode, totalHolidays: $totalHolidays, supportedLanguages: $supportedLanguages, uuid: $uuid}';
 }

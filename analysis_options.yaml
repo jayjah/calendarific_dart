@@ -13,6 +13,7 @@ analyzer:
   language:
     strict-inference: true
     strict-raw-types: true
+    strict-casts: true
 
   exclude:
     - "example/**"
@@ -228,7 +229,7 @@ dart_code_metrics:
     cyclomatic-complexity: 20
     maximum-nesting-level: 5
     number-of-methods: 10
-    number-of-parameters: 5
+    number-of-parameters: 8
     maintainability-index: 50
     halstead-volume: 150
     weight-of-class: 0.33
@@ -240,6 +241,7 @@ dart_code_metrics:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
     - "**/*.file.dart"
+    - "**/*.chopper.dart"
   rules:
     - newline-before-return
     - no-boolean-literal-compare
