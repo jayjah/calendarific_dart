@@ -56,10 +56,10 @@ class DefaultRequestByLocationOption implements RequestOption {
     String year,
     CalendarificClient api,
   ) {
-    assert(location.isEmpty,
-        'Provided location value was provided, but is empty!');
-    assert(!location.contains('-'),
-        'Provided location value is not a valid 3166-2 format!');
+    assert(location.isNotEmpty,
+        'Provided location value was provided, but is empty! Provided value: $location');
+    assert(location.contains('-'),
+        'Provided location value is not a valid 3166-2 format! Provided value: $location');
 
     return api.getHolidaysByLocation(
       apiKey,
@@ -86,10 +86,10 @@ class DefaultRequestByLocationAndTypeOption implements RequestOption {
     String year,
     CalendarificClient api,
   ) {
-    assert(location.isEmpty,
-        'Provided location value was provided, but is empty!');
-    assert(!location.contains('-'),
-        'Provided location value is not a valid 3166-2 format!');
+    assert(location.isNotEmpty,
+        'Provided location value was provided, but is empty! Provided value: $location');
+    assert(location.contains('-'),
+        'Provided location value is not a valid 3166-2 format! Provided value: $location');
 
     return api.getHolidaysByLocationAndType(
       apiKey,
@@ -177,12 +177,12 @@ class MonthWithLocationRequestOption implements RequestOption {
   ) {
     assert(
       month >= 1 && month <= 12,
-      'Month must be between 1 and 12!',
+      'Month must be between 1 and 12! Provided value: $month',
     );
-    assert(location.isEmpty,
-        'Provided location value was provided, but is empty!');
-    assert(!location.contains('-'),
-        'Provided location value is not a valid 3166-2 format!');
+    assert(location.isNotEmpty,
+        'Provided location value was provided, but is empty! Provided value: $location');
+    assert(location.contains('-'),
+        'Provided location value is not a valid 3166-2 format! Provided value: $location');
 
     return api.getHolidaysFromMonthByLocation(
       apiKey,
@@ -215,12 +215,12 @@ class MonthWithLocationByTypeRequestOption implements RequestOption {
   ) {
     assert(
       month >= 1 && month <= 12,
-      'Month must be between 1 and 12!',
+      'Month must be between 1 and 12! Provided value: $month',
     );
-    assert(location.isEmpty,
-        'Provided location value was provided, but is empty!');
-    assert(!location.contains('-'),
-        'Provided location value is not a valid 3166-2 format!');
+    assert(location.isNotEmpty,
+        'Provided location value was provided, but is empty! Provided value: $location');
+    assert(location.contains('-'),
+        'Provided location value is not a valid 3166-2 format! Provided value: $location');
 
     return api.getHolidaysFromMonthByLocationAndType(
       apiKey,
@@ -252,7 +252,7 @@ class MonthDayRequestOption implements RequestOption {
   ) {
     assert(
       day >= 1 && day <= 31 && month >= 1 && month <= 12,
-      'Day must be between 1 and 31. Month must be between 1 and 12!',
+      'Day must be between 1 and 31. Month must be between 1 and 12! Provided day: $day; Provided month: $month',
     );
 
     return api.getSpecificHolidays(apiKey, countryCode, year, day, month);
@@ -280,7 +280,7 @@ class MonthDayByTypeRequestOption implements RequestOption {
   ) {
     assert(
       day >= 1 && day <= 31 && month >= 1 && month <= 12,
-      'Day must be between 1 and 31. Month must be between 1 and 12!',
+      'Day must be between 1 and 31. Month must be between 1 and 12! Provided day: $day; Provided month: $month',
     );
 
     return api.getSpecificHolidaysByType(
@@ -316,12 +316,12 @@ class MonthDayWithLocationRequestOption implements RequestOption {
   ) {
     assert(
       day >= 1 && day <= 31 && month >= 1 && month <= 12,
-      'Day must be between 1 and 31. Month must be between 1 and 12!',
+      'Day must be between 1 and 31. Month must be between 1 and 12! Provided day: $day; Provided month: $month',
     );
-    assert(location.isEmpty,
-        'Provided location value was provided, but is empty!');
-    assert(!location.contains('-'),
-        'Provided location value is not a valid 3166-2 format!');
+    assert(location.isNotEmpty,
+        'Provided location value was provided, but is empty! Provided value: $location');
+    assert(location.contains('-'),
+        'Provided location value is not a valid 3166-2 format! Provided value: $location');
 
     return api.getSpecificHolidaysByLocation(
       apiKey,
@@ -358,12 +358,12 @@ class MonthDayWithLocationByTypeRequestOption implements RequestOption {
   ) {
     assert(
       day >= 1 && day <= 31 && month >= 1 && month <= 12,
-      'Day must be between 1 and 31. Month must be between 1 and 12!',
+      'Day must be between 1 and 31. Month must be between 1 and 12! Provided day: $day; Provided month: $month',
     );
-    assert(location.isEmpty,
-        'Provided location value was provided, but is empty!');
-    assert(!location.contains('-'),
-        'Provided location value is not a valid 3166-2 format!');
+    assert(location.isNotEmpty,
+        'Provided location value was provided, but is empty! Provided value: $location');
+    assert(location.contains('-'),
+        'Provided location value is not a valid 3166-2 format!  Provided value: $location');
 
     return api.getSpecificHolidaysByLocationAndType(
       apiKey,
