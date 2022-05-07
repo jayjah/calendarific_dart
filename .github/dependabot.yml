@@ -7,7 +7,7 @@ updates:
       interval: "daily"
     allow:
       # Allow both direct and indirect updates for all packages
-      - dependency-type: "all"
+      - dependency-type: "direct"
     # Specify labels pull requests
     labels:
       - "dependencies"
