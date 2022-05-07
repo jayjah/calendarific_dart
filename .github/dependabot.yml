@@ -14,3 +14,5 @@ updates:
     # Add reviewers
     reviewers:
       - "jayjah"
+    # Allow up to 10 open pull requests for pub dependencies
+    open-pull-requests-limit: 10
