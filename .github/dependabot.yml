@@ -6,7 +6,7 @@ updates:
     schedule:
       interval: "daily"
     allow:
-      - dependency-name: "*"
+      - dependency-name: "chopper"
       # Allow both direct and indirect updates for all packages
       - dependency-type: "direct"
     # Specify labels pull requests
