@@ -39,8 +39,13 @@ abstract class CalendarificDartApi {
         );
       case 429:
         return const CalendarificApiException(
-          'Too many requests. API limits reached',
+          'Too many requests. API limit reached',
           429,
+        );
+      case 426:
+        return const CalendarificApiException(
+          'Too many requests. API limit reached',
+          426,
         );
       case 600:
         return const CalendarificApiException(
