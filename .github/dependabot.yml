@@ -5,9 +5,9 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    allow:
+    #allow:
       # Allow both direct updates for all packages
-      - dependency-type: "direct"
+    #  - dependency-type: "direct"
     # Specify labels pull requests
     labels:
       - "dependencies"
