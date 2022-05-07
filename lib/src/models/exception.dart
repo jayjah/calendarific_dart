@@ -9,6 +9,6 @@ class CalendarificApiException implements Exception {
 
   @override
   String toString() {
-    return 'CalendarificApiException{message: $message, code: $code, response: $response}';
+    return 'CalendarificApiException{message: $message, code: $code, response body: ${response?.bodyString}';
   }
 }
