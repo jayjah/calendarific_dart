@@ -15,7 +15,7 @@ abstract class CalendarificDartApi {
   Future<Iterable<Language>?> getLanguages();
   Future<Iterable<Country>?> getCountries();
 
-  Exception getExceptionFromResponse(Response<dynamic> response) {
+  Exception _exceptionFromResponse(Response<dynamic> response) {
     switch (response.statusCode) {
       case 401:
         return const CalendarificApiException(

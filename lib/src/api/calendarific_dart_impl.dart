@@ -35,7 +35,7 @@ class CalendarificApi extends CalendarificDartApi {
     );
 
     if (response.statusCode != 200) {
-      throw getExceptionFromResponse(response);
+      throw _exceptionFromResponse(response);
     }
 
     return Holiday.listFromJsonData(response.bodyString.asDecodedJson);
@@ -50,7 +50,7 @@ class CalendarificApi extends CalendarificDartApi {
   Future<Iterable<Language>?> getLanguages() async {
     final Response<dynamic> response = await _client.getLanguages(_apiKey);
     if (response.statusCode != 200) {
-      throw getExceptionFromResponse(response);
+      throw _exceptionFromResponse(response);
     }
 
     return Language.listFromJsonData(response.bodyString.asDecodedJson);
@@ -65,7 +65,7 @@ class CalendarificApi extends CalendarificDartApi {
   Future<Iterable<Country>?> getCountries() async {
     final Response<dynamic> response = await _client.getCountries(_apiKey);
     if (response.statusCode != 200) {
-      throw getExceptionFromResponse(response);
+      throw _exceptionFromResponse(response);
     }
 
     return Country.listFromJsonData(response.bodyString.asDecodedJson);
