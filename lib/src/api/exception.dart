@@ -1,4 +1,4 @@
-part of 'models.dart';
+part of 'api.dart';
 
 /// Exception class
 class CalendarificApiException implements Exception {

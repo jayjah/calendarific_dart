@@ -1,6 +1,6 @@
 // ignore_for_file: comment_references
 
-part of 'models.dart';
+part of 'api.dart';
 
 /// Get holidays only by year and countryCode
 class DefaultRequestOption implements RequestOption {
