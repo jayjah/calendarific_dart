@@ -1,13 +1,13 @@
-// ignore_for_file: avoid_dynamic_calls
+// ignore_for_file: avoid_dynamic_calls, curly_braces_in_flow_control_structures
 
 part of 'models.dart';
 
 /// Basic holiday model class
 class Holiday {
-  final String name;
-  final String description;
-  final List<String> types;
-  final DateTime date;
+  final String? name;
+  final String? description;
+  final List<String>? types;
+  final DateTime? date;
   const Holiday({
     required this.name,
     required this.description,
@@ -15,21 +15,24 @@ class Holiday {
     required this.date,
   });
   factory Holiday.fromJson(dynamic json) {
-    final DateTime date = DateTime.parse(json['date']['iso'] as String);
-    final List<String> types = List<String>.from(json['type'] as List<dynamic>);
+    late final String? isoDateTime = json?['date']?['iso']?.toString();
+    late final DateTime? date =
+        isoDateTime == null ? null : DateTime.parse(isoDateTime);
+    late final dynamic jsonTypes = json?['type'];
+    late final List<String>? types =
+        jsonTypes is List ? List<String>.from(jsonTypes) : null;
 
     return Holiday(
       date: date,
       types: types,
-      description: json['description'] as String,
-      name: json['name'] as String,
+      description: json?['description']?.toString(),
+      name: json?['name']?.toString(),
     );
   }
 
   static Iterable<Holiday>? listFromJsonData(dynamic json) {
-    final dynamic data = json['response']?['holidays'];
+    final dynamic data = json?['response']?['holidays'];
     if (data is List)
-      // ignore: curly_braces_in_flow_control_structures
       return data.isEmpty
           ? const <Holiday>[]
           : data.map<Holiday>(Holiday.fromJson);

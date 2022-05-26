@@ -4,11 +4,11 @@ part of 'models.dart';
 
 /// Basic country model class
 class Country {
-  final String name;
-  final String isoCode;
-  final int totalHolidays;
-  final int supportedLanguages;
-  final String uuid;
+  final String? name;
+  final String? isoCode;
+  final int? totalHolidays;
+  final int? supportedLanguages;
+  final String? uuid;
   const Country({
     required this.name,
     required this.isoCode,
@@ -16,17 +16,34 @@ class Country {
     required this.supportedLanguages,
     required this.uuid,
   });
-  factory Country.fromJson(dynamic json) => Country(
-        supportedLanguages: json['supported_languages'] as int,
-        totalHolidays: json['total_holidays'] as int,
-        isoCode: json['iso-3166'] as String,
-        name: json['country_name'] as String,
-        uuid: json['uuid'] as String,
-      );
+  factory Country.fromJson(dynamic json) {
+    late final dynamic supportedLanguages = json?['supported_languages'];
+    late final dynamic totalHolidays = json?['total_holidays'];
+
+    return Country(
+      supportedLanguages: supportedLanguages == null
+          ? null
+          : int.tryParse(
+              supportedLanguages.toString(),
+            ),
+      totalHolidays: totalHolidays == null
+          ? null
+          : int.tryParse(
+              totalHolidays.toString(),
+            ),
+      isoCode: json?['iso-3166']?.toString(),
+      name: json?['country_name']?.toString(),
+      uuid: json?['uuid']?.toString(),
+    );
+  }
 
   static Iterable<Country>? listFromJsonData(dynamic json) {
-    final dynamic data = json['response']?['countries'];
-    if (data is List) return data.map<Country>(Country.fromJson);
+    final dynamic data = json?['response']?['countries'];
+    if (data is List)
+      // ignore: curly_braces_in_flow_control_structures
+      return data.isEmpty
+          ? const <Country>[]
+          : data.map<Country>(Country.fromJson);
 
     return null;
   }
