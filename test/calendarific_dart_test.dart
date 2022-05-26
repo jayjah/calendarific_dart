@@ -18,7 +18,7 @@ void main() {
       final Iterable<Holiday>? data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
-        option: const DefaultRequestOption(),
+        option: const RequestOption.defaultOne(),
       );
       expect(data, isNotNull);
       expect(data, isNotEmpty);

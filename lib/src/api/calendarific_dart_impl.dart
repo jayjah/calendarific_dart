@@ -6,9 +6,18 @@ part of 'api.dart';
 class CalendarificApi extends CalendarificDartApi {
   final String _apiKey;
   final CalendarificClient _client;
-  CalendarificApi(this._apiKey)
-      : assert(_apiKey.isNotEmpty, 'API Key can not be empty!'),
-        _client = CalendarificClient.create(ChopperClient());
+  final bool enableLogging;
+  CalendarificApi(
+    this._apiKey, {
+    this.enableLogging = true,
+  })  : assert(_apiKey.trim().isNotEmpty, 'API Key can not be empty!'),
+        _client = CalendarificClient.create(
+          ChopperClient(
+            interceptors: enableLogging
+                ? <dynamic>[HttpLoggingInterceptor()]
+                : const <dynamic>[],
+          ),
+        );
 
   /// Retrieve holidays by given [countryCode] and [year] and [option]. [option]
   ///   defines what kind of data should be asked.

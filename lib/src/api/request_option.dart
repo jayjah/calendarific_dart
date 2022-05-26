@@ -3,8 +3,8 @@
 part of 'api.dart';
 
 /// Get holidays only by year and countryCode
-class DefaultRequestOption implements RequestOption {
-  const DefaultRequestOption();
+class _DefaultRequestOption implements RequestOption {
+  const _DefaultRequestOption();
   @override
   Future<Response<dynamic>> run(
     String apiKey,
@@ -21,9 +21,9 @@ class DefaultRequestOption implements RequestOption {
 }
 
 /// Get holidays only by year and countryCode and by specific [CalendarificType]
-class DefaultRequestByTypeOption implements RequestOption {
+class _DefaultRequestByTypeOption implements RequestOption {
   final CalendarificType type;
-  const DefaultRequestByTypeOption({
+  const _DefaultRequestByTypeOption({
     required this.type,
   });
   @override
@@ -44,9 +44,9 @@ class DefaultRequestByTypeOption implements RequestOption {
 
 /// Get holidays only by year and countryCode and by specific location
 ///   [location] must be ISO 3166-2 format
-class DefaultRequestByLocationOption implements RequestOption {
+class _DefaultRequestByLocationOption implements RequestOption {
   final String location;
-  const DefaultRequestByLocationOption({
+  const _DefaultRequestByLocationOption({
     required this.location,
   });
   @override
@@ -72,10 +72,10 @@ class DefaultRequestByLocationOption implements RequestOption {
 
 /// Get holidays only by year and countryCode and by specific [CalendarificType] and location
 ///   [location] must be ISO 3166-2 format
-class DefaultRequestByLocationAndTypeOption implements RequestOption {
+class _DefaultRequestByLocationAndTypeOption implements RequestOption {
   final String location;
   final CalendarificType type;
-  const DefaultRequestByLocationAndTypeOption({
+  const _DefaultRequestByLocationAndTypeOption({
     required this.location,
     required this.type,
   });
@@ -103,9 +103,9 @@ class DefaultRequestByLocationAndTypeOption implements RequestOption {
 
 /// Get holidays only by year and countryCode and by specific [month]
 ///   [month] must be between 1 and 12.
-class MonthRequestOption implements RequestOption {
+class _MonthRequestOption implements RequestOption {
   final int month;
-  const MonthRequestOption({required this.month});
+  const _MonthRequestOption({required this.month});
   @override
   Future<Response<dynamic>> run(
     String apiKey,
@@ -129,10 +129,10 @@ class MonthRequestOption implements RequestOption {
 
 /// Get holidays only by year and countryCode and by specific [month] and [CalendarificType]
 ///   [month] must be between 1 and 12.
-class MonthRequestByTypeOption implements RequestOption {
+class _MonthRequestByTypeOption implements RequestOption {
   final int month;
   final CalendarificType type;
-  const MonthRequestByTypeOption({
+  const _MonthRequestByTypeOption({
     required this.month,
     required this.type,
   });
@@ -161,10 +161,10 @@ class MonthRequestByTypeOption implements RequestOption {
 /// Get holidays only by year and countryCode and by specific [month] and [location]
 ///   [month] must be between 1 and 12.
 ///   [location] must be ISO 3166-2 format
-class MonthWithLocationRequestOption implements RequestOption {
+class _MonthWithLocationRequestOption implements RequestOption {
   final int month;
   final String location;
-  const MonthWithLocationRequestOption({
+  const _MonthWithLocationRequestOption({
     required this.month,
     required this.location,
   });
@@ -197,11 +197,11 @@ class MonthWithLocationRequestOption implements RequestOption {
 /// Get holidays only by year and countryCode and by specific [month], [CalendarificType] and [location]
 ///   [month] must be between 1 and 12.
 ///   [location] must be ISO 3166-2 format
-class MonthWithLocationByTypeRequestOption implements RequestOption {
+class _MonthWithLocationByTypeRequestOption implements RequestOption {
   final int month;
   final String location;
   final CalendarificType type;
-  const MonthWithLocationByTypeRequestOption({
+  const _MonthWithLocationByTypeRequestOption({
     required this.month,
     required this.location,
     required this.type,
@@ -236,10 +236,10 @@ class MonthWithLocationByTypeRequestOption implements RequestOption {
 /// Get holidays only by year, countryCode and by specific [day] and [month]
 ///   [day] must be between 1 and 31.
 ///   [month] must be between 1 and 12.
-class MonthDayRequestOption implements RequestOption {
+class _MonthDayRequestOption implements RequestOption {
   final int month;
   final int day;
-  const MonthDayRequestOption({
+  const _MonthDayRequestOption({
     required this.month,
     required this.day,
   });
@@ -262,11 +262,11 @@ class MonthDayRequestOption implements RequestOption {
 /// Get holidays only by year, countryCode and by specific [day], [month] and [CalendarificType]
 ///   [day] must be between 1 and 31.
 ///   [month] must be between 1 and 12.
-class MonthDayByTypeRequestOption implements RequestOption {
+class _MonthDayByTypeRequestOption implements RequestOption {
   final int month;
   final int day;
   final CalendarificType type;
-  const MonthDayByTypeRequestOption({
+  const _MonthDayByTypeRequestOption({
     required this.month,
     required this.day,
     required this.type,
@@ -298,11 +298,11 @@ class MonthDayByTypeRequestOption implements RequestOption {
 ///   [day] must be between 1 and 31.
 ///   [month] must be between 1 and 12.
 ///   [location] must be ISO 3166-2 format
-class MonthDayWithLocationRequestOption implements RequestOption {
+class _MonthDayWithLocationRequestOption implements RequestOption {
   final int month;
   final int day;
   final String location;
-  const MonthDayWithLocationRequestOption({
+  const _MonthDayWithLocationRequestOption({
     required this.month,
     required this.day,
     required this.location,
@@ -338,12 +338,12 @@ class MonthDayWithLocationRequestOption implements RequestOption {
 ///   [day] must be between 1 and 31.
 ///   [month] must be between 1 and 12.
 ///   [location] must be ISO 3166-2 format
-class MonthDayWithLocationByTypeRequestOption implements RequestOption {
+class _MonthDayWithLocationByTypeRequestOption implements RequestOption {
   final int month;
   final int day;
   final String location;
   final CalendarificType type;
-  const MonthDayWithLocationByTypeRequestOption({
+  const _MonthDayWithLocationByTypeRequestOption({
     required this.month,
     required this.day,
     required this.location,
@@ -379,7 +379,56 @@ class MonthDayWithLocationByTypeRequestOption implements RequestOption {
 
 /// Abstract class, which is used to handle the API call in the run method inside
 abstract class RequestOption {
-  const RequestOption();
+  const factory RequestOption.defaultOne() = _DefaultRequestOption;
+  const factory RequestOption.defaultByType({
+    required CalendarificType type,
+  }) = _DefaultRequestByTypeOption;
+  const factory RequestOption.defaultByLocation({
+    required String location,
+  }) = _DefaultRequestByLocationOption;
+  const factory RequestOption.defaultByTypeAndLocation({
+    required CalendarificType type,
+    required String location,
+  }) = _DefaultRequestByLocationAndTypeOption;
+
+  const factory RequestOption.byMonth({
+    required int month,
+  }) = _MonthRequestOption;
+  const factory RequestOption.byMonthAndType({
+    required int month,
+    required CalendarificType type,
+  }) = _MonthRequestByTypeOption;
+  const factory RequestOption.byMonthAndLocation({
+    required int month,
+    required String location,
+  }) = _MonthWithLocationRequestOption;
+  const factory RequestOption.byMonthTypeAndLocation({
+    required int month,
+    required CalendarificType type,
+    required String location,
+  }) = _MonthWithLocationByTypeRequestOption;
+
+  const factory RequestOption.byMonthAndDay({
+    required int month,
+    required int day,
+  }) = _MonthDayRequestOption;
+  const factory RequestOption.byMonthDayAndLocation({
+    required int month,
+    required int day,
+    required String location,
+  }) = _MonthDayWithLocationRequestOption;
+  const factory RequestOption.byMonthDayAndType({
+    required int month,
+    required int day,
+    required CalendarificType type,
+  }) = _MonthDayByTypeRequestOption;
+  const factory RequestOption.byMonthDayTypeAndLocation({
+    required int month,
+    required int day,
+    required CalendarificType type,
+    required String location,
+  }) = _MonthDayWithLocationByTypeRequestOption;
+
   Future<Response<dynamic>> run(
     String apiKey,
     String countryCode,
