@@ -378,6 +378,7 @@ class _MonthDayWithLocationByTypeRequestOption implements RequestOption {
 }
 
 /// Abstract class, which is used to handle the API call in the run method inside
+///   It uses the factory-pattern to create an instance of the desired `RequestOption`
 abstract class RequestOption {
   const factory RequestOption.defaultOne() = _DefaultRequestOption;
   const factory RequestOption.defaultByType({
@@ -406,7 +407,6 @@ abstract class RequestOption {
     required CalendarificType type,
     required String location,
   }) = _MonthWithLocationByTypeRequestOption;
-
   const factory RequestOption.byMonthAndDay({
     required int month,
     required int day,
