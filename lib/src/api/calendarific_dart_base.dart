@@ -1,7 +1,7 @@
 part of 'api.dart';
 
 /// Basic extension on String to reduce code duplication
-extension JsonDecoder on String {
+extension _JsonDecoder on String {
   dynamic get asDecodedJson => jsonDecode(this);
 }
 

@@ -390,7 +390,6 @@ abstract class RequestOption {
     required CalendarificType type,
     required String location,
   }) = _DefaultRequestByLocationAndTypeOption;
-
   const factory RequestOption.byMonth({
     required int month,
   }) = _MonthRequestOption;

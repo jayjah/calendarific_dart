@@ -37,7 +37,7 @@ class Country {
     );
   }
 
-  static Iterable<Country>? listFromJsonData(dynamic json) {
+  static Iterable<Country>? listFromJson(dynamic json) {
     final dynamic data = json?['response']?['countries'];
     if (data is List)
       // ignore: curly_braces_in_flow_control_structures

@@ -6,18 +6,19 @@ part of 'api.dart';
 class CalendarificApi extends CalendarificDartApi {
   final String _apiKey;
   final CalendarificClient _client;
-  final bool enableLogging;
   CalendarificApi(
     this._apiKey, {
-    this.enableLogging = true,
+    final bool enableLogging = true,
+    final CalendarificClient? client,
   })  : assert(_apiKey.trim().isNotEmpty, 'API Key can not be empty!'),
-        _client = CalendarificClient.create(
-          ChopperClient(
-            interceptors: enableLogging
-                ? <dynamic>[HttpLoggingInterceptor()]
-                : const <dynamic>[],
-          ),
-        );
+        _client = client ??
+            CalendarificClient.create(
+              ChopperClient(
+                interceptors: enableLogging
+                    ? <dynamic>[HttpLoggingInterceptor()]
+                    : const <dynamic>[],
+              ),
+            );
 
   /// Retrieve holidays by given [countryCode] and [year] and [option]. [option]
   ///   defines what kind of data should be asked.
@@ -47,7 +48,7 @@ class CalendarificApi extends CalendarificDartApi {
       throw _exceptionFromResponse(response);
     }
 
-    return Holiday.listFromJsonData(response.bodyString.asDecodedJson);
+    return Holiday.listFromJson(response.bodyString.asDecodedJson);
   }
 
   /// Retrieve all languages which are supported by Calendarific.
@@ -62,7 +63,7 @@ class CalendarificApi extends CalendarificDartApi {
       throw _exceptionFromResponse(response);
     }
 
-    return Language.listFromJsonData(response.bodyString.asDecodedJson);
+    return Language.listFromJson(response.bodyString.asDecodedJson);
   }
 
   /// Retrieve all countries which are supported by Calendarific.
@@ -77,6 +78,6 @@ class CalendarificApi extends CalendarificDartApi {
       throw _exceptionFromResponse(response);
     }
 
-    return Country.listFromJsonData(response.bodyString.asDecodedJson);
+    return Country.listFromJson(response.bodyString.asDecodedJson);
   }
 }

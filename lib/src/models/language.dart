@@ -18,7 +18,7 @@ class Language {
         name: json?['name']?.toString(),
       );
 
-  static Iterable<Language>? listFromJsonData(dynamic json) {
+  static Iterable<Language>? listFromJson(dynamic json) {
     final dynamic data = json?['response']?['languages'];
     if (data is List) return data.map<Language>(Language.fromJson);
 

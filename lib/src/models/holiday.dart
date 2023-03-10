@@ -30,7 +30,7 @@ class Holiday {
     );
   }
 
-  static Iterable<Holiday>? listFromJsonData(dynamic json) {
+  static Iterable<Holiday>? listFromJson(dynamic json) {
     final dynamic data = json?['response']?['holidays'];
     if (data is List)
       return data.isEmpty
