@@ -28,7 +28,7 @@ void main() {
       final Iterable<Holiday>? data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
-        option: const DefaultRequestByTypeOption(
+        option: const RequestOption.defaultByType(
           type: CalendarificType.local,
         ),
       );
@@ -40,7 +40,7 @@ void main() {
       final Iterable<Holiday>? data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
-        option: const DefaultRequestByLocationOption(
+        option: const RequestOption.defaultByLocation(
           location: 'de-sh',
         ),
       );
@@ -52,7 +52,7 @@ void main() {
       final Iterable<Holiday>? data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
-        option: const DefaultRequestByLocationAndTypeOption(
+        option: const RequestOption.defaultByTypeAndLocation(
           location: 'de-sh',
           type: CalendarificType.local,
         ),
@@ -65,7 +65,7 @@ void main() {
       final Iterable<Holiday>? data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
-        option: const MonthDayRequestOption(
+        option: const RequestOption.byMonthAndDay(
           month: 12,
           day: 24,
         ),
@@ -78,7 +78,7 @@ void main() {
       final Iterable<Holiday>? data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
-        option: const MonthDayWithLocationRequestOption(
+        option: const RequestOption.byMonthDayAndLocation(
           month: 12,
           day: 24,
           location: 'de-sh',
@@ -92,7 +92,7 @@ void main() {
       final Iterable<Holiday>? data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
-        option: const MonthDayWithLocationByTypeRequestOption(
+        option: const RequestOption.byMonthDayTypeAndLocation(
           month: 12,
           day: 24,
           location: 'de-sh',
@@ -107,7 +107,7 @@ void main() {
       final Iterable<Holiday>? data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
-        option: const MonthDayByTypeRequestOption(
+        option: const RequestOption.byMonthDayAndType(
           month: 12,
           day: 24,
           type: CalendarificType.local,
@@ -121,7 +121,7 @@ void main() {
       final Iterable<Holiday>? data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
-        option: const MonthRequestOption(
+        option: const RequestOption.byMonth(
           month: 12,
         ),
       );
@@ -133,8 +133,8 @@ void main() {
       final Iterable<Holiday>? data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
-        option:
-            const MonthWithLocationRequestOption(month: 12, location: 'de-sh'),
+        option: const RequestOption.byMonthAndLocation(
+            month: 12, location: 'de-sh'),
       );
       expect(data, isNotNull);
       expect(data, isNotEmpty);
@@ -144,7 +144,7 @@ void main() {
       final Iterable<Holiday>? data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
-        option: const MonthWithLocationByTypeRequestOption(
+        option: const RequestOption.byMonthTypeAndLocation(
           month: 12,
           location: 'de-sh',
           type: CalendarificType.local,
@@ -158,7 +158,7 @@ void main() {
       final Iterable<Holiday>? data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
-        option: const MonthRequestByTypeOption(
+        option: const RequestOption.byMonthAndType(
           month: 12,
           type: CalendarificType.local,
         ),
