@@ -18,11 +18,20 @@ class Language {
         name: json?['name']?.toString(),
       );
 
-  static Iterable<Language>? listFromJson(dynamic json) {
-    final dynamic data = json?['response']?['languages'];
-    if (data is List) return data.map<Language>(Language.fromJson);
+  static (Iterable<Language>, Exception?) listFromJson(dynamic json) {
+    return switch (json) {
+      {
+        'response': {
+          'languages': final List<Map<String, dynamic>> data,
+        }
+      } =>
+        (data.map<Language>(Language.fromJson), null),
+      _ => (const <Language>[], CalendarificApiException.jsonParseError),
+    };
+    //final dynamic data = json?['response']?['languages'];
+    //if (data is List) return data.map<Language>(Language.fromJson);
 
-    return null;
+    //return null;
   }
 
   @override

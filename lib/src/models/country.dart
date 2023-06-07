@@ -16,7 +16,7 @@ class Country {
     required this.supportedLanguages,
     required this.uuid,
   });
-  factory Country.fromJson(dynamic json) {
+  factory Country.fromJson(final dynamic json) {
     late final dynamic supportedLanguages = json?['supported_languages'];
     late final dynamic totalHolidays = json?['total_holidays'];
 
@@ -37,15 +37,24 @@ class Country {
     );
   }
 
-  static Iterable<Country>? listFromJson(dynamic json) {
-    final dynamic data = json?['response']?['countries'];
+  static (Iterable<Country>, Exception?) listFromJson(dynamic json) {
+    return switch (json) {
+      {
+        'response': {
+          'countries': final List<Map<String, dynamic>> data,
+        }
+      } =>
+        (data.map<Country>(Country.fromJson), null),
+      _ => (const <Country>[], CalendarificApiException.jsonParseError),
+    };
+    /*final dynamic data = json?['response']?['countries'];
     if (data is List)
       // ignore: curly_braces_in_flow_control_structures
       return data.isEmpty
           ? const <Country>[]
           : data.map<Country>(Country.fromJson);
 
-    return null;
+    return null;*/
   }
 
   @override

@@ -22,12 +22,8 @@ class CalendarificApi extends CalendarificDartApi {
 
   /// Retrieve holidays by given [countryCode] and [year] and [option]. [option]
   ///   defines what kind of data should be asked.
-  ///
-  /// It may throw a [CalendarificApiException] error on API error.
-  ///
-  /// It may return [Null] on unexpected parse error.
   @override
-  Future<Iterable<Holiday>?> getHolidays({
+  Future<(Iterable<Holiday>, Exception?)> getHolidays({
     required String countryCode,
     required String year,
     required RequestOption option,
@@ -44,26 +40,19 @@ class CalendarificApi extends CalendarificDartApi {
       _client,
     );
 
-    if (response.statusCode != 200) {
-      throw _exceptionFromResponse(response);
-    }
-
-    return Holiday.listFromJson(response.bodyString.asDecodedJson);
+    return response.statusCode != 200
+        ? (const <Holiday>[], _exceptionFromResponse(response))
+        : Holiday.listFromJson(response.bodyString.asDecodedJson);
   }
 
   /// Retrieve all languages which are supported by Calendarific.
-  ///
-  /// It may throw a [CalendarificApiException] error on API error.
-  ///
-  /// It may return [Null] on unexpected parse error.
   @override
-  Future<Iterable<Language>?> getLanguages() async {
+  Future<(Iterable<Language>, Exception?)> getLanguages() async {
     final Response<dynamic> response = await _client.getLanguages(_apiKey);
-    if (response.statusCode != 200) {
-      throw _exceptionFromResponse(response);
-    }
 
-    return Language.listFromJson(response.bodyString.asDecodedJson);
+    return response.statusCode != 200
+        ? (const <Language>[], _exceptionFromResponse(response))
+        : Language.listFromJson(response.bodyString.asDecodedJson);
   }
 
   /// Retrieve all countries which are supported by Calendarific.
@@ -72,12 +61,11 @@ class CalendarificApi extends CalendarificDartApi {
   ///
   /// It may return [Null] on unexpected parse error.
   @override
-  Future<Iterable<Country>?> getCountries() async {
+  Future<(Iterable<Country>, Exception?)> getCountries() async {
     final Response<dynamic> response = await _client.getCountries(_apiKey);
-    if (response.statusCode != 200) {
-      throw _exceptionFromResponse(response);
-    }
 
-    return Country.listFromJson(response.bodyString.asDecodedJson);
+    return response.statusCode != 200
+        ? (const <Country>[], _exceptionFromResponse(response))
+        : Country.listFromJson(response.bodyString.asDecodedJson);
   }
 }

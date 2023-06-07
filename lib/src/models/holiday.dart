@@ -30,14 +30,24 @@ class Holiday {
     );
   }
 
-  static Iterable<Holiday>? listFromJson(dynamic json) {
-    final dynamic data = json?['response']?['holidays'];
+  static (Iterable<Holiday>, Exception?) listFromJson(dynamic json) {
+    return switch (json) {
+      {
+        'response': {
+          'holidays': final List<Map<String, dynamic>> data,
+        }
+      } =>
+        (data.map<Holiday>(Holiday.fromJson), null),
+      _ => (const <Holiday>[], CalendarificApiException.jsonParseError),
+    };
+
+    /*final dynamic data = json?['response']?['holidays'];
     if (data is List)
       return data.isEmpty
           ? const <Holiday>[]
           : data.map<Holiday>(Holiday.fromJson);
 
-    return null;
+    return null;*/
   }
 
   @override

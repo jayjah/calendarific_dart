@@ -15,41 +15,41 @@ void main() {
     });
 
     test('getHolidays Test', () async {
-      final Iterable<Holiday>? data = await api.getHolidays(
+      final (Iterable<Holiday>, Exception?) data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
         option: const RequestOption.defaultOne(),
       );
-      expect(data, isNotNull);
-      expect(data, isNotEmpty);
+      expect(data.$2, isNull);
+      expect(data.$1, isNotEmpty);
     });
 
     test('getHolidaysByType Test', () async {
-      final Iterable<Holiday>? data = await api.getHolidays(
+      final (Iterable<Holiday>, Exception?) data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
         option: const RequestOption.defaultByType(
           type: CalendarificType.local,
         ),
       );
-      expect(data, isNotNull);
-      expect(data, isNotEmpty);
+      expect(data.$2, isNull);
+      expect(data.$1, isNotEmpty);
     });
 
     test('getHolidaysByLocation Test', () async {
-      final Iterable<Holiday>? data = await api.getHolidays(
+      final (Iterable<Holiday>, Exception?) data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
         option: const RequestOption.defaultByLocation(
           location: 'de-sh',
         ),
       );
-      expect(data, isNotNull);
-      expect(data, isNotEmpty);
+      expect(data.$2, isNull);
+      expect(data.$1, isNotEmpty);
     });
 
     test('getHolidaysByLocationAndType Test', () async {
-      final Iterable<Holiday>? data = await api.getHolidays(
+      final (Iterable<Holiday>, Exception?) data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
         option: const RequestOption.defaultByTypeAndLocation(
@@ -57,12 +57,12 @@ void main() {
           type: CalendarificType.local,
         ),
       );
-      expect(data, isNotNull);
-      expect(data, isNotEmpty);
+      expect(data.$2, isNull);
+      expect(data.$1, isNotEmpty);
     });
 
     test('getSpecificHolidays Test', () async {
-      final Iterable<Holiday>? data = await api.getHolidays(
+      final (Iterable<Holiday>, Exception?) data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
         option: const RequestOption.byMonthAndDay(
@@ -70,12 +70,12 @@ void main() {
           day: 24,
         ),
       );
-      expect(data, isNotNull);
-      expect(data, isNotEmpty);
+      expect(data.$2, isNull);
+      expect(data.$1, isNotEmpty);
     });
 
     test('getSpecificHolidaysByLocation Test', () async {
-      final Iterable<Holiday>? data = await api.getHolidays(
+      final (Iterable<Holiday>, Exception?) data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
         option: const RequestOption.byMonthDayAndLocation(
@@ -84,12 +84,12 @@ void main() {
           location: 'de-sh',
         ),
       );
-      expect(data, isNotNull);
-      expect(data, isNotEmpty);
+      expect(data.$2, isNull);
+      expect(data.$1, isNotEmpty);
     });
 
     test('getSpecificHolidaysByLocationAndType Test', () async {
-      final Iterable<Holiday>? data = await api.getHolidays(
+      final (Iterable<Holiday>, Exception?) data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
         option: const RequestOption.byMonthDayTypeAndLocation(
@@ -99,12 +99,12 @@ void main() {
           type: CalendarificType.local,
         ),
       );
-      expect(data, isNotNull);
-      expect(data, isNotEmpty);
+      expect(data.$2, isNull);
+      expect(data.$1, isNotEmpty);
     });
 
     test('getSpecificHolidaysByType Test', () async {
-      final Iterable<Holiday>? data = await api.getHolidays(
+      final (Iterable<Holiday>, Exception?) data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
         option: const RequestOption.byMonthDayAndType(
@@ -113,35 +113,37 @@ void main() {
           type: CalendarificType.local,
         ),
       );
-      expect(data, isNotNull);
-      expect(data, isNotEmpty);
+      expect(data.$2, isNull);
+      expect(data.$1, isNotEmpty);
     });
 
     test('getHolidaysFromMonth Test', () async {
-      final Iterable<Holiday>? data = await api.getHolidays(
+      final (Iterable<Holiday>, Exception?) data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
         option: const RequestOption.byMonth(
           month: 12,
         ),
       );
-      expect(data, isNotNull);
-      expect(data, isNotEmpty);
+      expect(data.$2, isNull);
+      expect(data.$1, isNotEmpty);
     });
 
     test('getHolidaysFromMonthByLocation Test', () async {
-      final Iterable<Holiday>? data = await api.getHolidays(
+      final (Iterable<Holiday>, Exception?) data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
         option: const RequestOption.byMonthAndLocation(
-            month: 12, location: 'de-sh'),
+          month: 12,
+          location: 'de-sh',
+        ),
       );
-      expect(data, isNotNull);
-      expect(data, isNotEmpty);
+      expect(data.$2, isNull);
+      expect(data.$1, isNotEmpty);
     });
 
     test('getHolidaysFromMonthByLocationAndType Test', () async {
-      final Iterable<Holiday>? data = await api.getHolidays(
+      final (Iterable<Holiday>, Exception?) data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
         option: const RequestOption.byMonthTypeAndLocation(
@@ -150,12 +152,12 @@ void main() {
           type: CalendarificType.local,
         ),
       );
-      expect(data, isNotNull);
-      expect(data, isNotEmpty);
+      expect(data.$2, isNull);
+      expect(data.$1, isNotEmpty);
     });
 
     test('getHolidaysFromMonthByType Test', () async {
-      final Iterable<Holiday>? data = await api.getHolidays(
+      final (Iterable<Holiday>, Exception?) data = await api.getHolidays(
         countryCode: 'DE',
         year: '2022',
         option: const RequestOption.byMonthAndType(
@@ -163,20 +165,20 @@ void main() {
           type: CalendarificType.local,
         ),
       );
-      expect(data, isNotNull);
-      expect(data, isNotEmpty);
+      expect(data.$2, isNull);
+      expect(data.$1, isNotEmpty);
     });
 
     test('getLanguages Test', () async {
-      final Iterable<Language>? data = await api.getLanguages();
-      expect(data, isNotNull);
-      expect(data, isNotEmpty);
+      final (Iterable<Language>, Exception?) data = await api.getLanguages();
+      expect(data.$2, isNull);
+      expect(data.$1, isNotEmpty);
     });
 
     test('getCountries Test', () async {
-      final Iterable<Country>? data = await api.getCountries();
-      expect(data, isNotNull);
-      expect(data, isNotEmpty);
+      final (Iterable<Country>, Exception?) data = await api.getCountries();
+      expect(data.$2, isNull);
+      expect(data.$1, isNotEmpty);
     });
   });
 }
