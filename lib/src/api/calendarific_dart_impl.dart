@@ -56,10 +56,6 @@ class CalendarificApi extends CalendarificDartApi {
   }
 
   /// Retrieve all countries which are supported by Calendarific.
-  ///
-  /// It may throw a [CalendarificApiException] error on API error.
-  ///
-  /// It may return [Null] on unexpected parse error.
   @override
   Future<(Iterable<Country>, Exception?)> getCountries() async {
     final Response<dynamic> response = await _client.getCountries(_apiKey);

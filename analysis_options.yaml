@@ -3,10 +3,6 @@ analyzer:
   plugins:
     - dart_code_metrics
 
-  strong-mode:
-    implicit-casts: false
-    implicit-dynamic: false
-
   language:
     strict-inference: true
     strict-raw-types: true
@@ -59,7 +55,6 @@ analyzer:
     invalid_factory_annotation: error
     invalid_factory_method_impl: error
     invalid_literal_annotation: error
-    invalid_override_different_default_values_named: error
     invalid_override_of_non_virtual_member: error
     invalid_required_named_param: error
     invalid_required_optional_positional_param: error
@@ -89,7 +84,6 @@ analyzer:
     package_names: error
     package_prefixed_library_names: error
     parameter_assignments: error
-    prefer_equal_for_default_values: error
     prefer_generic_function_type_aliases: error
     prefer_mixin: error
     prefer_typing_uninitialized_variables: error
@@ -148,9 +142,7 @@ linter:
     - empty_statements
     - hash_and_equals
     - implementation_imports
-    - invariant_booleans
     - iterable_contains_unrelated_type
-    - join_return_with_assignment
     - library_names
     - library_prefixes
     - list_remove_unrelated_type
@@ -172,7 +164,6 @@ linter:
     - prefer_const_literals_to_create_immutables
     - prefer_constructors_over_static_methods
     - prefer_contains
-    - prefer_equal_for_default_values
     - prefer_final_fields
     - prefer_final_locals
     - prefer_foreach
